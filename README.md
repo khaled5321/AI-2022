@@ -10,7 +10,7 @@ ___
 
 - E (*Environment*) => ***3x3 board***
 
-- A (*Actuators*) => ?
+- A (*Actuators*) => ***The opponent***
 
 - S (*Sensors*) => ***The opponent’s movement***
 

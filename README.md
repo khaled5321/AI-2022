@@ -32,6 +32,14 @@ ___
 
 ___
 
-### Agent type: ***Goal-based agent***
+### Agent type
+
+#### ***simple-reflex agent***
+
+#### Reason
+
+1. Because the environment is fully observable.
+2. The agent has full knowledage of all the possible moves in the game.
+3. The agent doesn't need to remember past states of the game, it only deals with the current state.
 
 ___

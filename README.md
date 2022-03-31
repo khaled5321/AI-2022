@@ -1,6 +1,6 @@
 # **Tic-Tac-Toe Game**
 
-## **Tic-Tac-Toe Agent**
+## **Tic-Tac-Toe AI Agent**
 
 ___
 
@@ -43,3 +43,18 @@ ___
 3. The agent doesn't need to remember past states of the game, it only deals with the current state.
 
 ___
+
+### Problem Formulation
+
+- Initial State => Empty board
+
+- Successor function => Any remaining empty cell
+
+- Goal Test => Win the game or atleast draw
+
+- Path Cost => Every move has a cost, "X" Will try to maximize the cost, and "O" will try to minimize it. (minimax Algorithm)
+___
+
+### Game Tree
+
+![](./img/Game%20Tree.jpg)

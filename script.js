@@ -1,3 +1,17 @@
+var mode=localStorage.getItem("mode");
+if(mode){
+    if(mode==="offline"){
+        console.log(mode);
+    }
+
+    else if(mode==="AI"){
+        console.log(mode);
+    }
+
+    else if(mode==="online"){
+        console.log(mode);
+    }
+}
 const guiBoard=document.getElementById("board");
 const playBtn=document.getElementById("playBtn");
 const label=document.getElementById("label");
@@ -12,10 +26,12 @@ let board=[
     [cells[3],cells[4],cells[5]],
     [cells[6],cells[7],cells[8]],
 ];
+
 let player1={letter:"X",color:"red"};
 let player2={letter:"O",color:"blue"};
 let players=[player1,player2];
-let currentPlayer=players[Math.floor(Math.random()*players.length)];
+let currentPlayer=players[Math.floor(Math.random()*players.length)];//
+
 
 function addEvent(cells){
     for (let cell of cells) {
@@ -116,8 +132,6 @@ function drawLine(mode,color){
         xright:coordinates.end.getBoundingClientRect().right-parent.xleft,
         ybottom:coordinates.end.getBoundingClientRect().bottom-parent.ytop,
     };
-    console.log(start)
-    console.log(end)
 
     const svg=document.createElementNS("http://www.w3.org/2000/svg", 'svg');
     const line=document.createElementNS("http://www.w3.org/2000/svg", 'line');
@@ -157,6 +171,3 @@ function drawLine(mode,color){
 }
 
 addEvent(cells);
-
-
-

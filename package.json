@@ -4,7 +4,7 @@
   "description": "tic tac toe game with AI and play online features",
   "main": "script.js",
   "dependencies": {
-    "daisyui": "^2.8.0",
+    "daisyui": "^2.14.1",
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {

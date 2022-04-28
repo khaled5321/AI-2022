@@ -1,12 +1,6 @@
 /*
 ! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
 */
-
-/*
-1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
-2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
-*/
-
 *,
 ::before,
 ::after {
@@ -25,17 +19,9 @@
   --tw-content: '';
 }
 
-/*
-1. Use a consistent sensible line-height in all browsers.
-2. Prevent adjustments of font size after orientation changes in iOS.
-3. Use a more readable tab size.
-4. Use the user's configured `sans` font-family by default.
-*/
-
 html {
   line-height: 1.5;
   /* 1 */
-  -webkit-text-size-adjust: 100%;
   /* 2 */
   -moz-tab-size: 4;
   /* 3 */
@@ -46,23 +32,12 @@ html {
   /* 4 */
 }
 
-/*
-1. Remove the margin in all browsers.
-2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
-*/
-
 body {
   margin: 0;
   /* 1 */
   line-height: inherit;
   /* 2 */
 }
-
-/*
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-3. Ensure horizontal rules are visible by default.
-*/
 
 hr {
   height: 0;
@@ -73,18 +48,10 @@ hr {
   /* 3 */
 }
 
-/*
-Add the correct text decoration in Chrome, Edge, and Safari.
-*/
-
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
 }
-
-/*
-Remove the default font size and weight for headings.
-*/
 
 h1,
 h2,
@@ -353,13 +320,6 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   /* 2 */
 }
 
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -385,12 +345,6 @@ Make sure disabled buttons don't get the pointer cursor.
   cursor: default;
 }
 
-/*
-1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
-2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
-*/
-
 img,
 svg,
 video,
@@ -401,23 +355,15 @@ embed,
 object {
   display: block;
   /* 1 */
-  vertical-align: middle;
+
   /* 2 */
 }
-
-/*
-Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
-*/
 
 img,
 video {
   max-width: 100%;
   height: auto;
 }
-
-/*
-Ensure the default browser behavior of the `hidden` attribute.
-*/
 
 [hidden] {
   display: none;
@@ -1746,8 +1692,7 @@ html {
   grid-auto-flow: row;
   place-items: start;
   row-gap: 2.5rem;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  column-gap: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }

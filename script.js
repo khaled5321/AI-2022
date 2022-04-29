@@ -18,7 +18,7 @@ let scores={
     O:100,
     tie:0,
 };
-
+let turn=0;
 let isOver=false;
 let players=[{letter:"X",color:"red"},{letter:"O",color:"blue"}];
 let player1=players[0];
@@ -42,6 +42,7 @@ function makeMove(cell){
     cell.innerText=currentPlayer.letter;
     cell.style.color=currentPlayer.color;
     checkForWin();
+    turn+=1;
     currentPlayer=(currentPlayer===player1) ? (player2) : (player1);
 
     if(mode==="AI" && currentPlayer===player2 && isOver===false){
@@ -53,6 +54,17 @@ function moveAI(){
     let bestScore=-Infinity;
     let score=0;
     let bestMove;
+    let bestPossibleMoves=[board[1][1],board[0][0]];
+    // make first move for the AI to boost speed
+    if(turn<3){
+        for(let cell of bestPossibleMoves){
+            if(cell.innerText===""){
+                makeMove(cell);
+                bestPossibleMoves.splice(bestPossibleMoves.indexOf(cell), 1);
+                return;
+            }
+        }
+    }
 
     for(let row of board){
         for(let cell of row){
@@ -60,7 +72,7 @@ function moveAI(){
                 cell.innerText='O'; //make a move
                 score=minimax(0,false); //evaluate the move 
                 cell.innerText=""; //undo the move
-                if(score > bestScore){
+                if(score > bestScore){ //chose the best move
                     bestScore=score;
                     bestMove=cell;
                 }
@@ -71,8 +83,9 @@ function moveAI(){
 }
 
 function minimax(depth,isMax){
-    if(depth>2) return 0;
+    if(depth>2) return 0; //check first three levels
     let result=checkForWin(true,isMax);
+
     if(result !==null){
         return scores[result];
     }
@@ -92,7 +105,6 @@ function minimax(depth,isMax){
         }
         return bestScore;
     }
-
     else{
         let minScore=Infinity;
 
@@ -108,7 +120,6 @@ function minimax(depth,isMax){
         }
         return minScore;
     }
-
 }
 
 function isEqual(a,b,c){
@@ -118,6 +129,15 @@ function isEqual(a,b,c){
         coordinates.end=c;
     }
     return equal;
+}
+
+function gameEnded(){
+    guiBoard.style.pointerEvents="none";
+    isOver=true;
+    label.style.opacity=1;
+    label.style.color=currentPlayer.color;
+    label.innerText=`${currentPlayer.letter} wins!`;
+    playBtn.classList.remove('hidden');
 }
 
 function checkForWin(fromMinimax=false,isMax=false){
@@ -134,13 +154,8 @@ function checkForWin(fromMinimax=false,isMax=false){
             }
             
         }
-        drawLine("row",currentPlayer.color)
-        guiBoard.style.pointerEvents="none";
-        isOver=true;
-        label.style.opacity=1;
-        label.style.color=currentPlayer.color;
-        label.innerText=`${currentPlayer.letter} wins!`;
-        playBtn.classList.remove('hidden');
+        drawLine("row",currentPlayer.color);
+        gameEnded();
     }
     //check cols
     else if(isEqual(board[0][0],board[1][0],board[2][0])||
@@ -156,12 +171,7 @@ function checkForWin(fromMinimax=false,isMax=false){
             
         }
         drawLine("col",currentPlayer.color)
-        guiBoard.style.pointerEvents="none";
-        isOver=true;
-        label.style.opacity=1;
-        label.style.color=currentPlayer.color;
-        label.innerText=`${currentPlayer.letter} wins!`;
-        playBtn.classList.remove('hidden');
+        gameEnded();
     }
     //check diagnol 
     else if(isEqual(board[0][0],board[1][1],board[2][2])){
@@ -175,12 +185,7 @@ function checkForWin(fromMinimax=false,isMax=false){
             
         }
         drawLine("diagnolleft",currentPlayer.color);
-        guiBoard.style.pointerEvents="none";
-        isOver=true;
-        label.style.opacity=1;
-        label.style.color=currentPlayer.color;
-        label.innerText=`${currentPlayer.letter} wins!`;
-        playBtn.classList.remove('hidden');
+        gameEnded();
     }
     else if(isEqual(board[0][2],board[1][1],board[2][0])){
         if(fromMinimax){
@@ -193,17 +198,12 @@ function checkForWin(fromMinimax=false,isMax=false){
             
         }
         drawLine("diagnolright",currentPlayer.color);
-        guiBoard.style.pointerEvents="none";
-        isOver=true;
-        label.style.opacity=1;
-        label.style.color=currentPlayer.color;
-        label.innerText=`${currentPlayer.letter} wins!`;
-        playBtn.classList.remove('hidden');
+        gameEnded();
     }
     else{
-        for(let i of board){
-            for(let j of i){
-                if(j.innerText===""){
+        for(let row of board){
+            for(let cell of row){
+                if(cell.innerText===""){
                     return null
                 }
             }

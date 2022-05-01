@@ -35,9 +35,6 @@ function addEvent(cells){
 
 function makeMove(cell){
     if(cell.dataset.clicked==="true") return;
-    if(mode==="online"){
-        if(currentPlayer!==player1) return;
-    }
     cell.setAttribute("data-clicked","true");
     cell.innerText=currentPlayer.letter;
     cell.style.color=currentPlayer.color;
@@ -83,7 +80,7 @@ function moveAI(){
 }
 
 function minimax(depth,isMax){
-    if(depth>2) return 0; //check first three levels
+    if(depth>4) return 0; //check first five levels
     let result=checkForWin(true,isMax);
 
     if(result !==null){
@@ -146,7 +143,7 @@ function checkForWin(fromMinimax=false,isMax=false){
     isEqual(board[1][0],board[1][1],board[1][2])||
     isEqual(board[2][0],board[2][1],board[2][2])){
         if(fromMinimax){
-            if(isMax){
+            if(isMax){ // IF isMax it is X turn
                 return 'X';
             }
             else{
